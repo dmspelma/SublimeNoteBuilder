@@ -47,7 +47,6 @@ echo "Note is saved here: $note_file"
 # Create file and fill with template. Will not create file if one exists
 if [ -e "${note_file}" ]; then # -e flag checks if file exists in given path
   echo "File ${note_file} already exists!"
-  exit 1
 else
 	cat > "${note_file}" <<EOF
 Trello Card: $card_title
