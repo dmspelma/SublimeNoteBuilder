@@ -29,19 +29,19 @@ fi
 # For given name, substitutes all spaces with _ and appends `.notes` file extension
 function note_name(){
 	tmp=$1
-	tmp="${tmp// /_}"
+  tmp="${tmp// /_}" # Replace spaces with underscores
 	echo "$tmp.notes"
 }
 
-function filter_field(){
+function filter_text(){
 	local=$1
-	filtered="${local//[^a-zA-Z0-9_-]/}"
+	filtered="${local//[^a-zA-Z0-9_ -]/}" # Removes all symbols except spaces, underscores, and hyphens
 	echo "$filtered"
 }
 
 read -p "Trello Card Title: " card_title
 read -p "Trello Link: " card_link
-note_file="$full_path/$(note_name "$(filter_field "$card_title")")"
+note_file="$full_path/$(note_name "$(filter_text "$card_title")")"
 echo "Note is saved here: $note_file"
 
 # Create file and fill with template. Will not create file if one exists
