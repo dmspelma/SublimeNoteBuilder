@@ -35,7 +35,7 @@ function note_name(){
 
 function filter_text(){
 	local=$1
-	filtered="${local//[^a-zA-Z0-9_ -]/}" # Removes all symbols except spaces, underscores, and hyphens
+	filtered="${local//[^a-zA-Z0-9_ .-]/}" # Removes all symbols except spaces, underscores, and hyphens
 	echo "$filtered"
 }
 
