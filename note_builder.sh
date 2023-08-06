@@ -3,12 +3,15 @@
 default_path=$HOME
 path_extension='Documents/Notes'
 formatted_date=$(date +%m/%d/%Y)
+platform='Trello'
 
-
-while getopts ":d" opt; do
+while getopts ":d :j" opt; do
   case ${opt} in
     d )
       path_extension='Documents/Notes/DevNotes'
+      ;;
+    j )
+      platform='JIRA'
       ;;
     \? )
       echo "Invalid option: -$OPTARG" 1>&2
@@ -39,8 +42,8 @@ function filter_text(){
 	echo "$filtered"
 }
 
-read -p "Trello Card Title: " card_title
-read -p "Trello Link: " card_link
+read -p "$platform Card Title: " card_title
+read -p "$platform Link: " card_link
 note_file="$full_path/$(note_name "$(filter_text "$card_title")")"
 echo "Note is saved here: $note_file"
 
